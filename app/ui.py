@@ -64,11 +64,21 @@ if provider == "Google":
     # Updated to active production models to resolve 404 errors
     model_name = st.sidebar.selectbox("Model", ["gemini-2.5-flash", "gemini-2.5-pro"])
     api_key_env = os.getenv("GOOGLE_API_KEY", "")
-    api_key_input = st.sidebar.text_input("Google API Key", value=api_key_env, type="password")
+    api_key_input = st.sidebar.text_input(
+        "Google API Key",
+        value="",
+        placeholder="Leave blank to use key from .env",
+        type="password"
+    )
 else:
     model_name = st.sidebar.selectbox("Model", ["gpt-4o-mini", "gpt-4o"])
     api_key_env = os.getenv("OPENAI_API_KEY", "")
-    api_key_input = st.sidebar.text_input("OpenAI API Key", value=api_key_env, type="password")
+    api_key_input = st.sidebar.text_input(
+        "OpenAI API Key",
+        value="",
+        placeholder="Leave blank to use key from .env",
+        type="password"
+    )
 
 temperature = st.sidebar.slider("Temperature", min_value=0.0, max_value=1.0, value=0.0, step=0.1)
 
@@ -197,12 +207,13 @@ if run_analysis:
     if not report_text.strip():
         st.warning("Please paste or load medical report text first.")
     else:
-        # Dynamically set API key in environment for extractor chain execution
-        if api_key_input.strip():
+        # Use manually entered key if provided, otherwise fall back to .env value
+        resolved_api_key = api_key_input.strip() or api_key_env
+        if resolved_api_key:
             if provider == "Google":
-                os.environ["GOOGLE_API_KEY"] = api_key_input
+                os.environ["GOOGLE_API_KEY"] = resolved_api_key
             else:
-                os.environ["OPENAI_API_KEY"] = api_key_input
+                os.environ["OPENAI_API_KEY"] = resolved_api_key
                 
         try:
             with st.spinner("Initializing Clinical AI Extraction Chain..."):
