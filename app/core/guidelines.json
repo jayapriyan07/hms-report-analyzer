@@ -1,0 +1,38 @@
+{
+  "Hemoglobin": {
+    "min_value": 12.0,
+    "max_value": 16.0,
+    "unit": "g/dL",
+    "description": "Oxygen-carrying protein in red blood cells. Low indicates anemia; high indicates polycythemia."
+  },
+  "WBC": {
+    "min_value": 4500.0,
+    "max_value": 11000.0,
+    "unit": "cells/uL",
+    "description": "White blood cells count. High indicates infection, inflammation, or leukemia; low indicates bone marrow failure or autoimmune conditions."
+  },
+  "Glucose": {
+    "min_value": 70.0,
+    "max_value": 100.0,
+    "unit": "mg/dL",
+    "description": "Fasting blood sugar level. High indicates diabetes or prediabetes; low indicates hypoglycemia."
+  },
+  "Potassium": {
+    "min_value": 3.5,
+    "max_value": 5.0,
+    "unit": "mEq/L",
+    "description": "Essential electrolyte for muscle and heart function. Extremes can cause life-threatening cardiac arrhythmias."
+  },
+  "Sodium": {
+    "min_value": 135.0,
+    "max_value": 145.0,
+    "unit": "mEq/L",
+    "description": "Crucial electrolyte for fluid balance and nerve conduction. Low values can cause swelling or confusion."
+  },
+  "LDL Cholesterol": {
+    "min_value": 0.0,
+    "max_value": 100.0,
+    "unit": "mg/dL",
+    "description": "Low-density lipoprotein cholesterol (bad cholesterol). High levels increase cardiovascular risk."
+  }
+}
